@@ -4,9 +4,16 @@ class Api::V1::ArticlesController < ApplicationController
   def index
     if params.include?(:free)
       articles = Article.where(free: true)
-      render json: articles[0]
+      article = articles[0]
+      if article.image.attachment == nil
+        article.image = nil
+        render json: article
+      else 
+        article.image.service_url(expires_in: 1.hours, disposition: 'inline')
+        render json: [article, article.image.service_url]
+      end
     else
-      articles = Article.where(published: true)
+      articles = Article.where(published: true, free: false)
       articles = articles.where(location: params[:location]) if params[:location]
       articles = articles.where(category: params[:category]) if params[:category]
       articles = articles.paginate(page: params[:page], per_page: 4)
