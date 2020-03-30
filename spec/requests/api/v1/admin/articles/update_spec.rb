@@ -19,6 +19,20 @@ RSpec.describe 'POST /api/admin/articles', type: :request do
     end
   end
 
+  describe 'successfully set free article' do 
+    before do
+      patch "/api/v1/admin/articles/#{published_article.id}",
+      params: {
+          "article[free]": true
+      },
+      headers: publisher_headers
+    end
+
+    it 'returns a 200 status' do
+      expect(response.status).to eq 200
+    end
+  end
+
   describe 'unsuccessfully with' do
     describe 'non logged in user' do
       let!(:non_authorized_headers) { { HTTP_ACCEPT: 'application/json' } }
@@ -58,6 +72,20 @@ RSpec.describe 'POST /api/admin/articles', type: :request do
 
       it 'returns error message' do
         expect(response_json["error"]).to eq "Not authorized!"
+      end
+
+      describe 'unsuccessfully set free article' do 
+        before do
+          patch "/api/v1/admin/articles/#{published_article.id}",
+          params: {
+              "article[free]": true
+          },
+          headers: journalist_headers
+        end
+    
+        it 'returns a 404 status' do
+          expect(response.status).to eq 404
+        end
       end
     end
   end

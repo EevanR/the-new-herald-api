@@ -8,7 +8,7 @@ RSpec.describe 'GET/api/admin/articles', type: :request do
     end
   end
   let!(:published_article) { create(:article, published: true) }
-
+  let!(:published_article) { create(:article, published: true, free: true) }
 
   describe 'Successfully lists unpublished articles' do
     before do
@@ -34,6 +34,25 @@ RSpec.describe 'GET/api/admin/articles', type: :request do
     before do
       get '/api/v1/admin/articles',
       params: { published: true },
+      headers: publisher_headers
+    end
+    
+    it 'returns a 200 response status' do
+      expect(response).to have_http_status 200
+    end
+
+    it 'returns 1 article' do
+      expect(response_json['articles'].count).to eq 1
+    end
+  end
+
+  describe 'Successfully lists free published article' do
+    before do
+      get '/api/v1/admin/articles',
+      params: { 
+        published: true,
+        free: true
+      },
       headers: publisher_headers
     end
     
