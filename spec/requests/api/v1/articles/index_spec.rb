@@ -10,17 +10,43 @@ RSpec.describe 'GET /api/v1/articles', type: :request do
     end
     2.times do
       create(:article,
-             journalist_id: journalist.id,
-             location: 'Stockholm',
-             category: 2,
-             published: true)
+            journalist_id: journalist.id,
+            location: 'Stockholm',
+            category: 2,
+            published: true)
     end
     2.times do
       create(:article,
-             journalist_id: journalist.id,
-             location: 'Gothenburg',
-             category: 3,
-             published: false)
+            journalist_id: journalist.id,
+            location: 'Gothenburg',
+            category: 3,
+            published: false)
+    end
+    1.times do
+      create(:article,
+            journalist_id: journalist.id,
+            location: 'Malmo',
+            category: 4,
+            published: true,
+            free: true)
+    end
+  end
+
+  describe 'Get full free article' do
+    before do
+      get '/api/v1/articles',
+          params: {
+            published: true,
+            free: true
+          }
+    end
+
+    it 'return 1 article with full body' do
+      expect(response.status).to eq 200
+    end
+
+    it 'return correct article' do
+      expect(response_json['location']).to eq 'Malmo'
     end
   end
 
@@ -68,7 +94,7 @@ RSpec.describe 'GET /api/v1/articles', type: :request do
     end
 
     it 'returns total number of published entries' do
-      expect(response_json['meta']['total_count']).to eq 14
+      expect(response_json['meta']['total_count']).to eq 15
     end
   end
 
