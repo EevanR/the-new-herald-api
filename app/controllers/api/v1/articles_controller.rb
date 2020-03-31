@@ -16,7 +16,7 @@ class Api::V1::ArticlesController < ApplicationController
       articles = Article.where(published: true, free: false)
       articles = articles.where(location: params[:location]) if params[:location]
       articles = articles.where(category: params[:category]) if params[:category]
-      articles = articles.paginate(page: params[:page], per_page: 4)
+      articles = articles.paginate(page: params[:page], per_page: 5)
       render json: articles, each_serializer: Articles::IndexSerializer, meta: meta_attributes(articles)
     end
   end
