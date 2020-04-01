@@ -10,6 +10,8 @@ class Article < ApplicationRecord
 
   enum category: [:news, :food, :tech, :culture, :sports, :misc]
 
+  has_many :comments
+
   def unpublish
     if self.published_before_last_save == true && self.published == false
       self.update(publisher: nil)

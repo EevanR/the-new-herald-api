@@ -4,7 +4,6 @@ RSpec.describe 'DELETE /api/admin/articles', type: :request do
   let!(:publisher_headers) { { HTTP_ACCEPT: 'application/json' }.merge!(publisher_credentials) }
   let!(:article) { create(:article) }
 
-
   describe 'Successfully deletes article' do
     before do
       delete "/api/v1/admin/articles/#{article.id}",
