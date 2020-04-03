@@ -18,11 +18,22 @@ class Api::V1::Admin::ArticlesController < ApplicationController
 
   def update
     article = Article.find(params[:id])
-    authorize(article)
-    if article.update(article_params.merge(publisher: current_user)) && article.unpublish()
-      render head: :ok
-    else
-      render json: { error: article.errors.full_messages }, status: 422
+
+    if params.include?(:likes)
+      if article.likes.include?(params['likes'])
+        article.likes.delete(params['likes'])
+        render json: article
+      else
+        article.likes << params['likes']
+        render json: article
+      end
+    else 
+      authorize(article)
+      if article.update(article_params.merge(publisher: current_user)) && article.unpublish()
+        render head: :ok
+      else
+        render json: { error: article.errors.full_messages }, status: 422
+      end
     end
   end
 

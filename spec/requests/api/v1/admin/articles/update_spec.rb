@@ -107,4 +107,42 @@ RSpec.describe 'POST /api/admin/articles', type: :request do
       expect(published_article.reload.publisher).to eq nil
     end
   end
+
+  describe 'Authenticated user can update articles likes' do
+    let(:journalist) { create(:user, role: 'journalist')}
+    let(:journalist_credentials) { journalist.create_new_auth_token }
+    let!(:journalist_headers) { { HTTP_ACCEPT: 'application/json' }.merge!(journalist_credentials) }
+    describe 'Successfully increase count' do
+      before do
+        patch "/api/v1/admin/articles/#{published_article.id}",
+        params: {
+            likes: journalist.email
+        },
+        headers: journalist_credentials
+      end
+      
+      it 'returns 200' do
+        expect(response).to have_http_status 200
+      end
+      it 'article likes contains 2 user emails' do
+        expect(response_json['likes'].count).to eq 2
+      end
+    end
+
+    describe 'Successfully decrease count' do
+      before do
+        patch "/api/v1/admin/articles/#{published_article.id}",
+        params: {
+            likes: "user@mail.com" 
+        },
+        headers: journalist_credentials
+      end
+      it 'returns 200' do
+        expect(response).to have_http_status 200
+      end
+      it 'article likes has decreased count by 1' do
+        expect(response_json['likes']).to eq []
+      end
+    end
+  end
 end

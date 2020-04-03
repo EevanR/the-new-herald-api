@@ -5,6 +5,7 @@ RSpec.describe Article, type: :model do
     it { is_expected.to have_db_column :publisher_id }
     it { is_expected.to have_db_column :location}
     it { is_expected.to have_db_column :category }
+    it { is_expected.to have_db_column :likes }
   end
 
   describe 'Associations' do
