@@ -59,8 +59,8 @@ RSpec.describe 'GET /api/v1/articles', type: :request do
       expect(response).to have_http_status 200
     end
 
-    it 'returns 4 articles' do
-      expect(response_json['articles'].count).to eq 4
+    it 'returns 5 articles' do
+      expect(response_json['articles'].count).to eq 5
     end
 
     it 'returns only first 75 characters of each article' do
@@ -94,7 +94,7 @@ RSpec.describe 'GET /api/v1/articles', type: :request do
     end
 
     it 'returns total number of published entries' do
-      expect(response_json['meta']['total_count']).to eq 15
+      expect(response_json['meta']['total_count']).to eq 14
     end
   end
 

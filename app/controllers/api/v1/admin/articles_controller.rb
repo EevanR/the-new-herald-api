@@ -1,6 +1,6 @@
 class Api::V1::Admin::ArticlesController < ApplicationController
   before_action :authenticate_user!
-
+  
   def create
     article = current_user.articles.create(article_params.except(:image))
     authorize(article)
