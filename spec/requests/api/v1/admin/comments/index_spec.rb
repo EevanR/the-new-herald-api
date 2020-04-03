@@ -3,7 +3,11 @@ RSpec.describe 'GET /api/v1/admin/comments', type: :request do
   let(:journalist_credentials) { journalist.create_new_auth_token }
   let!(:journalist_headers) { { HTTP_ACCEPT: 'application/json' }.merge!(journalist_credentials) }
   let!(:article) { create(:article) }
-  let!(:comment) { create(:comment, article_id: article.id) }
+  let!(:comment) do 
+    3.times do
+      create(:comment, article_id: article.id)
+    end
+  end
 
   describe 'Successfully list comments' do
     before do
@@ -17,8 +21,8 @@ RSpec.describe 'GET /api/v1/admin/comments', type: :request do
       expect(response).to have_http_status 200
     end
 
-    it 'returns 1 comment' do
-      expect(response_json.count).to eq 1
+    it 'returns 3 comment' do
+      expect(response_json.count).to eq 3
     end
 
     it 'returns comment attributes' do

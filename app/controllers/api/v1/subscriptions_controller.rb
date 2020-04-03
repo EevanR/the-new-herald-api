@@ -1,7 +1,7 @@
 class Api::V1::SubscriptionsController < ApplicationController
   before_action :authenticate_user!
   rescue_from Stripe::InvalidRequestError, with: :invalid_token_id
-  
+
   def create
 
     if params[:stripeToken]

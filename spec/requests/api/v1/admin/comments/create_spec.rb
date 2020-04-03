@@ -10,10 +10,7 @@ RSpec.describe 'POST /api/v1/admin/comments', type: :request do
       params: {
         comment: {
           body: "This is the body of the comment",
-          user_id: journalist.id,
           article_id: article.id,
-          email: journalist.email,
-          role: journalist.role
         }
       },
       headers: journalist_headers
@@ -49,10 +46,7 @@ RSpec.describe 'POST /api/v1/admin/comments', type: :request do
       post "/api/v1/admin/comments",
       params: {
         comment: {
-          user_id: journalist.id,
-          article_id: article.id,
-          email: journalist.email,
-          role: journalist.role
+          article_id: article.id
         }
       },
       headers: journalist_headers
