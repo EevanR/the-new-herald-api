@@ -1,5 +1,5 @@
 class Api::V1::Admin::CommentsController < ApplicationController
-  before_action :authenticate_user!, :except => [:index]
+  before_action :authenticate_current_user, :except => [:index]
 
   def index
     comments = Comment.where(article_id: params['article_id'])

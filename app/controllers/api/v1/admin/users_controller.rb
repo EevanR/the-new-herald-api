@@ -1,5 +1,5 @@
 class Api::V1::Admin::UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_current_user
 
   def show
     user = User.find(params[:id])
