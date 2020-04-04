@@ -4,6 +4,7 @@ FactoryBot.define do
     body_en { "Some long breaking content" * 20 }
     title_sv { "Brytande nyheter" }
     body_sv { "Långt brytande innehåll. " *20}
+    likes { ["user@mail.com"] }
     association :journalist
     
     after(:create) do |article|

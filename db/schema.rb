@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_130620) do
+ActiveRecord::Schema.define(version: 2020_04_03_143200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,9 +53,10 @@ ActiveRecord::Schema.define(version: 2020_04_01_130620) do
     t.integer "journalist_id"
     t.boolean "published", default: false
     t.integer "publisher_id"
-    t.string "location", default: "All"
     t.integer "category", default: 5
+    t.string "location"
     t.boolean "free", default: false
+    t.string "likes", default: [], array: true
   end
 
   create_table "comments", force: :cascade do |t|
