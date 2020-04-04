@@ -18,13 +18,14 @@ class Api::V1::Admin::ArticlesController < ApplicationController
 
   def update
     article = Article.find(params[:id])
-
     if params.include?(:likes)
       if article.likes.include?(params['likes'])
         article.likes.delete(params['likes'])
+        article.save
         render json: article
       else
         article.likes << params['likes']
+        article.save
         render json: article
       end
     else 
