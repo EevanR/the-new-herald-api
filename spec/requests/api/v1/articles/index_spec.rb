@@ -32,6 +32,23 @@ RSpec.describe 'GET /api/v1/articles', type: :request do
     end
   end
 
+  describe 'Get all articles when no category is provided' do
+    before do
+      get '/api/v1/articles',
+          params: {
+            category: "all",
+          }
+    end
+
+    it 'return all articles' do
+      expect(response.status).to eq 200
+    end
+
+    it 'return all articles index' do
+      expect(response_json.count).to eq 17
+    end
+  end
+
   describe 'Get full free article' do
     before do
       get '/api/v1/articles',

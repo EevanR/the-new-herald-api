@@ -2,7 +2,10 @@ class Api::V1::ArticlesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :article_not_found
 
   def index
-    if params.include?(:free)
+    if params[:category] === "all"
+      articles = Article.all
+      render json: articles
+    elsif params.include?(:free)
       articles = Article.where(free: true)
       article = articles[0]
       if article.image.attachment == nil

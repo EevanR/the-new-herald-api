@@ -106,6 +106,7 @@ RSpec.describe 'POST /api/v1/admin/articles', type: :request do
           expect(response_json["errors"][0]).to eq "You need to sign in or sign up before continuing."
         end
       end
+
       describe 'in swedish' do
         before do
           post "/api/v1/admin/articles",
