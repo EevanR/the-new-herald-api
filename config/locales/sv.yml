@@ -8,6 +8,7 @@ sv:
     not_authorized: "Åtkomst nekad"
     article_not_found: "Artikeln hittades inte"
     img_missing: "Vänligen bifoga en bild"
+    unauthenticated: "Du måste bli medlem eller logga in för att fortsätta."
   devise:
     failure:
       unauthenticated: "Du måste bli medlem eller logga in för att fortsätta."

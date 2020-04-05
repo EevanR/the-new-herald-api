@@ -39,3 +39,7 @@ en:
     not_authorized: "Not authorized!"
     article_not_found: "Article not found"
     img_missing: "Please attach an image"
+    unauthenticated: "You need to sign in or sign up before continuing."
+  devise:
+    failure:
+      unauthenticated: "You need to sign in or sign up before continuing."

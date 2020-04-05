@@ -10,7 +10,10 @@ class ApplicationController < ActionController::API
   end 
 
   def authenticate_current_user
-    head :unauthorized if get_current_user.nil?
+    if get_current_user.nil?
+      # head :unauthorized 
+      render json: { errors: [I18n.t('errors.unauthenticated')]}, status: 401
+    end
   end
 
   def get_current_user
