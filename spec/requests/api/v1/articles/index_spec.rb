@@ -63,7 +63,6 @@ RSpec.describe 'GET /api/v1/articles', type: :request do
     end
 
     it 'return correct article' do
-      binding.pry
       expect(response_json['location']).to eq 'Malmo'
     end
   end
