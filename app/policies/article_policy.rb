@@ -22,6 +22,6 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def show?
-    @user.publisher?
+    @user.publisher? || @user.journalist? || @user.subscriber?
   end
 end
