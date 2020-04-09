@@ -1,4 +1,4 @@
-Rails.application.routes.default_url_options[:host] = 'https://reactive-herald-api.herokuapp.com/' 
+Rails.application.routes.default_url_options[:host] = 'https://the-new-herald.herokuapp.com/' 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
