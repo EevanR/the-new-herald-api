@@ -6,7 +6,7 @@ ruby '2.5.1'
 gem 'bootsnap', '>= 1.2', require: false
 gem 'rails', '~> 6.0.2'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 gem 'rack-cors', require: 'rack/cors'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'will_paginate', '~> 3.1.0'
