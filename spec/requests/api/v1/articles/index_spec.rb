@@ -49,23 +49,23 @@ RSpec.describe 'GET /api/v1/articles', type: :request do
     end
   end
 
-  describe 'Get full free article' do
-    before do
-      get '/api/v1/articles',
-          params: {
-            published: true,
-            free: true
-          }
-    end
+  # describe 'Get full free article' do
+  #   before do
+  #     get '/api/v1/articles',
+  #         params: {
+  #           published: true,
+  #           free: true
+  #         }
+  #   end
 
-    it 'return 1 article with full body' do
-      expect(response.status).to eq 200
-    end
+  #   it 'return 1 article with full body' do
+  #     expect(response.status).to eq 200
+  #   end
 
-    it 'return correct article' do
-      expect(response_json['location']).to eq 'Malmo'
-    end
-  end
+  #   it 'return correct article' do
+  #     expect(response_json['location']).to eq 'Malmo'
+  #   end
+  # end
 
   describe 'Get first page' do
     before do
