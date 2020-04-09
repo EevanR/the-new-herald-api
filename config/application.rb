@@ -29,8 +29,8 @@ module NewHeraldApi
       end
     end
 
-    config.stripe.secret_key = Rails.application.credentials.stripe[:secret_key]
-    config.stripe.publishable_key = Rails.application.credentials.stripe[:publishable_key]
+    # config.stripe.secret_key = Rails.application.credentials.stripe[:secret_key]
+    # config.stripe.publishable_key = Rails.application.credentials.stripe[:publishable_key]
 
     config.i18n.available_locales = [:en, :sv]
     config.i18n.default_locale = :en
