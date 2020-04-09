@@ -14,7 +14,7 @@ require "action_cable/engine"
 
 Bundler.require(*Rails.groups)
 
-module TheReactiveHeraldApi
+module TheNewHeraldApi
   class Application < Rails::Application
     config.load_defaults 6.0
     config.api_only = true
