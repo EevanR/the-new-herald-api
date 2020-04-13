@@ -1,8 +1,11 @@
+[![Coverage Status](https://coveralls.io/repos/github/EevanR/the-new-herald-api/badge.svg?branch=development)](https://coveralls.io/github/EevanR/the-new-herald-api?branch=development)
+
 # The New Herald API
 
 The New Herald is a second iteration of a previous project 'The Reactive Herald', made to function as a online news room. Users can browse short snippets of articles for free or can pay for a subscription to see full articles. Journalists can log on to create their articles and attach an image, which is stored on amazon web services. An article is not publically displayed until it is published by a publisher. Articles are grouped by category and the application's displayed language can be switched between swedish and english if the visitor/user desires.
 
 ## Deployed Site
+https://the-reactive-herald.netlify.com/
 
 ## Dependencies
 - Ruby 2.5.1
